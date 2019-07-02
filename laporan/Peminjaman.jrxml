@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Peminjaman" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="660c6deb-84e9-4d3a-bd3e-da7237d18ec5">
+	<property name="ireport.zoom" value="1.331000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     DetailPinjam.`KodeBuku` AS DetailPinjam_KodeBuku,
+     DetailPinjam.`Status` AS DetailPinjam_Status,
+     Pinjam.`NoPinjam` AS Pinjam_NoPinjam,
+     Pinjam.`TglPinjam` AS Pinjam_TglPinjam,
+     Pinjam.`NoAnggota` AS Pinjam_NoAnggota,
+     Anggota.`Nama` AS Anggota_Nama,
+     Buku.`JudulBuku` AS Buku_JudulBuku
+FROM
+(((     `Buku` Buku INNER JOIN `DetailPinjam` DetailPinjam ON Buku.`KodeBuku` = DetailPinjam.`KodeBuku`)
+     INNER JOIN `Pinjam` Pinjam ON DetailPinjam.`NoPinjam` = Pinjam.`NoPinjam`)
+     INNER JOIN `Anggota` Anggota ON Pinjam.`NoAnggota` = Anggota.`NoAnggota`)]]>
+	</queryString>
+	<field name="DetailPinjam_KodeBuku" class="java.lang.String"/>
+	<field name="DetailPinjam_Status" class="java.lang.String"/>
+	<field name="Pinjam_NoPinjam" class="java.lang.String"/>
+	<field name="Pinjam_TglPinjam" class="java.sql.Timestamp"/>
+	<field name="Pinjam_NoAnggota" class="java.lang.String"/>
+	<field name="Anggota_Nama" class="java.lang.String"/>
+	<field name="Buku_JudulBuku" class="java.lang.String"/>
+	<group name="Pinjam_TglPinjam">
+		<groupExpression><![CDATA[$F{Pinjam_TglPinjam}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="1" width="100" height="32" forecolor="#000000" backcolor="#FFFFFF" uuid="cb20fcf8-bd90-4f7e-ab00-f471384defc9"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TglPinjam]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="149" height="32" forecolor="#000000" backcolor="#FFFFFF" uuid="46d24441-5872-4954-8af6-7c77df9f5881"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Pinjam_TglPinjam}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="b51e2337-8c3b-4c7a-aac6-fca516b2fe05"/>
+				</line>
+				<staticText>
+					<reportElement mode="Opaque" x="276" y="1" width="92" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="247b6f32-0eb7-4c8e-90a5-c0054c2f64b0"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nama]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="368" y="1" width="147" height="20" uuid="60fbe953-9fae-4380-83ed-15e667a507a6"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Anggota_Nama}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#CCCCCC" uuid="51881ce8-7ec6-4dea-8683-3648ae50026e"/>
+				<staticText>
+					<reportElement x="20" y="20" width="276" height="43" forecolor="#000000" backcolor="#000000" uuid="daf83324-2c7f-478b-bf21-650b1a74dd7c"/>
+					<textElement>
+						<font size="26" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Laporan Peminjaman]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="c6b44830-450b-4f10-980e-6ba6194c2a11"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="a8b8234f-c2a7-43d8-bb01-e80f263629b3"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NoPinjam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="92" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="15969eeb-4736-4e1e-b3af-3d9486633f23"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NoAnggota]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="100" y="0" width="169" height="20" forecolor="#000000" uuid="b3b9dc31-862e-4498-97c3-17321da364da"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pinjam_NoPinjam}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="368" y="1" width="147" height="20" uuid="cc28e8d2-cb17-4c5e-b1fc-1305eb41fbc2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pinjam_NoAnggota}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="85">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="131" y="18" width="92" height="33" uuid="8dfb9cff-90c3-49fd-8a86-7a35e24edb7a"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DetailPinjam_KodeBuku}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="315" y="18" width="92" height="33" uuid="e83ecc76-acf8-4878-b0d2-cf5c3c111f6f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DetailPinjam_Status}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="223" y="0" width="92" height="18" forecolor="#006699" backcolor="#E6E6E6" uuid="92c0a6bc-59db-4581-81fe-1c0ab07d2683"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JudulBuku]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="315" y="0" width="92" height="18" forecolor="#006699" backcolor="#E6E6E6" uuid="72ff2b8a-6b16-4f6a-a490-3afae5314879"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="131" y="0" width="92" height="18" forecolor="#006699" backcolor="#E6E6E6" uuid="e9dfdd35-f5a1-49e1-85c1-118422e308fe"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KodeBuku]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="223" y="18" width="92" height="33" uuid="7d1cb62b-5e25-4418-b1f5-c1c20fac0a4c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Buku_JudulBuku}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="77">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="8befd97f-0dde-449d-8ef4-c8311ca2ddc2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="c9939d74-7029-41a6-b641-8dc3203bb4b3"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="daf93abd-1d0b-4b70-8609-336b944eec6d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
